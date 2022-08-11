@@ -1,2 +1,24 @@
 {
+    "coffee": [
+        {
+            "item name": "breakfast blend",
+            "item quantity": "4",
+            "item description": "starbucks coffee pod",
+            "item price": "0.9"
+        },
+        {
+            "item name": "decaf coffee",
+            "item quantity": "8",
+            "item description": "starbucks coffee pod",
+            "item price": "0.8"
+        }
+    ],
+    "coffee machine": [
+        {
+            "item name": "nespresso coffee machine",
+            "item quantity": "1",
+            "item description": "coffee machine",
+            "item price": "300"
+        }
+    ]
 }
