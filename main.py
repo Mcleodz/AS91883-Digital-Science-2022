@@ -13,7 +13,7 @@ def home_page():
     add_item_button = Button(root, text="Add an Item to Menu",
                              command=lambda: load_add_item_page(root)).pack()
 
-    remove_item_button = Button(root, text="Remove an Iem from Menu",
+    remove_item_button = Button(root, text="Remove an Item from Menu",
                                 command=lambda: load_remove_item_page(root)).pack()
 
 
