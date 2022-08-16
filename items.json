@@ -1,24 +1,24 @@
 {
-    "coffee": [
+    "food": [
         {
-            "item name": "breakfast blend",
-            "item quantity": "4",
-            "item description": "starbucks coffee pod",
-            "item price": "0.9"
+            "item name": "apple",
+            "item quantity": "5",
+            "item description": "red, shiny and tasty",
+            "item price": "0.5"
         },
         {
-            "item name": "decaf coffee",
-            "item quantity": "8",
-            "item description": "starbucks coffee pod",
-            "item price": "0.8"
+            "item name": "banana",
+            "item quantity": "2",
+            "item description": "yellow",
+            "item price": "0.75"
         }
     ],
-    "coffee machine": [
+    "drinks": [
         {
-            "item name": "nespresso coffee machine",
+            "item name": "milk",
             "item quantity": "1",
-            "item description": "coffee machine",
-            "item price": "300"
+            "item description": "i dont think dad got it",
+            "item price": "1"
         }
     ]
 }

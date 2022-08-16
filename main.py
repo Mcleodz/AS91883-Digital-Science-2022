@@ -1,11 +1,10 @@
 from tkinter import *
 from add_item_page import *
 from remove_item_page import *
+from new_order_page import *
 
 
 root = Tk()
-
-root.geometry('100x100')
 
 
 def home_page():
@@ -15,6 +14,9 @@ def home_page():
 
     remove_item_button = Button(root, text="Remove an Item from Menu",
                                 command=lambda: load_remove_item_page(root)).pack()
+
+    new_order_button = Button(root, text="Create New Order",
+                                command=lambda: load_new_order_page(root)).pack()
 
 
 home_page()
