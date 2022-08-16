@@ -27,9 +27,9 @@ def load_remove_item_page(old_root):
     item_to_remove = Entry(root, width=50, bg='#a3a3a3')
     item_to_remove.pack()
 
-    removing_item_Button = Button(root, text="Remove Selected item",
+    removing_item_button = Button(root, text="Remove Selected item",
                                   command=lambda: remove_item(item_to_remove, list_of_items))
-    removing_item_Button.pack()
+    removing_item_button.pack()
 
 
 def remove_item(item_to_remove, list_of_items_label):

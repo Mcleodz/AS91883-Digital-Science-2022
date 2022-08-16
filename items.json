@@ -20,5 +20,13 @@
             "item description": "i dont think dad got it",
             "item price": "1"
         }
+    ],
+    "hot beverage": [
+        {
+            "item name": "hot chocolate",
+            "item quantity": "69",
+            "item description": "luke warm w/ 3 marshmallows",
+            "item price": "0.5"
+        }
     ]
 }

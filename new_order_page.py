@@ -2,6 +2,22 @@ from tkinter import *
 import json
 
 
+def items_to_add(items_in_order):
+    root2 = Tk()
+    menu = Entry(root2, width=50, bg="#a3a3a3")
+    items_to_add_to_order = Entry(root2, width=50, bg="#a3a3a3")
+    add_item_button = Button(root2, text="Add the item(s)", command=lambda: add_item(items_in_order, items_to_add_to_order, root2))
+
+    menu.pack()
+    items_to_add_to_order.pack()
+    add_item_button.pack()
+
+    menu.insert(0, get_menu())
+
+    menu.config(state='readonly')
+    items_to_add_to_order.get()
+
+
 def get_menu():
     menu = []
     with open("items.json", "r") as json_file:
@@ -12,34 +28,24 @@ def get_menu():
     return ", ".join(menu)
 
 
-def add_item_to_order():
-    root2 = Tk()
+def add_item(items_in_order, items_to_add_to_order, root2):
+    items_in_order.pack()
+    items_in_order.insert(0, items_to_add_to_order.get())
+    items_in_order.config(state='readonly')
+    root2.destroy()
 
-    menu = Entry(root2, width=50, bg='#a3a3a3')
-    item_to_add = Entry(root2, width=50, bg='#a3a3a3')
-    add_item = Button(root2, text="Add this item to order", command=lambda: root2.withdraw())
-
-    menu.pack()
-    item_to_add.pack()
-    add_item.pack()
-
-    menu.insert(0, get_menu())
-
-    menu.config(state='readonly')
 
 def load_new_order_page(old_root):
     old_root.destroy()
     root = Tk()
 
     customer_name = Entry(root, width=50, bg='#a3a3a3')
-    menu_display = Entry(root, width=50, bg='#a3a3a3')
-    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: add_item_to_order())
+    items_in_order = Entry(root, width=50, bg='#a3a3a3')
+    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: items_to_add(items_in_order))
+    checkout_button = Button(root, text="checkout", command=lambda: print("hi"))
 
     customer_name.pack()
-    menu_display.pack()
     add_item_to_order_button.pack()
+    checkout_button.pack()
 
-    menu_display.insert(0, get_menu())
     customer_name.insert(0, 'Customer name / Table Number')
-
-    menu_display.config(state='readonly')
