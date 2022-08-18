@@ -16,7 +16,6 @@ def items_to_add(items_in_order):
     menu.insert(0, get_menu())
 
     menu.config(state='readonly')
-    items_to_add_to_order.get()
 
 
 def get_menu():
@@ -30,11 +29,21 @@ def get_menu():
 
 
 def add_item(items_in_order, items_to_add_to_order, root2):
-    items_in_order.pack()
-    items_in_order.config(state='normal')
-    items_in_order.insert(END, items_to_add_to_order.get() + ", ")
-    items_in_order.config(state='readonly')
-    root2.destroy()
+    all_items_in_the_order = []
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        for i in json_file_thing:
+            for j in range(len(json_file_thing[i])):
+                if items_to_add_to_order.get() == json_file_thing[i][j]["item name"]:
+                    items_in_order.pack()
+                    items_in_order.config(state='normal')
+                    items_in_order.insert(END, items_to_add_to_order.get())
+                    items_in_order.config(state='readonly')
+                    all_items_in_the_order.append(items_to_add_to_order.get())
+
+                    root2.destroy()
+                    order_price(all_items_in_the_order)
+                    break
 
 
 def load_new_order_page(old_root):
@@ -61,5 +70,15 @@ def checkout(items_in_order, customer_name):
         for i in items_in_order.get():
             purchases_file.write(i)
         purchases_file.write("\n")
-        purchases_file.close()
     quit()
+
+
+def order_price(all_items_in_the_order):
+    # items in order = ["item 1", "item 2", ...]
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        for item in all_items_in_the_order:
+            for i in json_file_thing:
+                for j in json_file_thing[i]:
+                    if j["item name"] == item:
+                        print(j['item price'])
