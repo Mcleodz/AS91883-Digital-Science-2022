@@ -1,5 +1,6 @@
 from tkinter import *
 import json
+import datetime
 
 
 def items_to_add(items_in_order):
@@ -30,7 +31,8 @@ def get_menu():
 
 def add_item(items_in_order, items_to_add_to_order, root2):
     items_in_order.pack()
-    items_in_order.insert(0, items_to_add_to_order.get())
+    items_in_order.config(state='normal')
+    items_in_order.insert(END, items_to_add_to_order.get() + ", ")
     items_in_order.config(state='readonly')
     root2.destroy()
 
@@ -42,10 +44,22 @@ def load_new_order_page(old_root):
     customer_name = Entry(root, width=50, bg='#a3a3a3')
     items_in_order = Entry(root, width=50, bg='#a3a3a3')
     add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: items_to_add(items_in_order))
-    checkout_button = Button(root, text="checkout", command=lambda: print("hi"))
+    checkout_button = Button(root, text="checkout", command=lambda: checkout(items_in_order, customer_name))
 
     customer_name.pack()
     add_item_to_order_button.pack()
     checkout_button.pack()
 
     customer_name.insert(0, 'Customer name / Table Number')
+
+
+def checkout(items_in_order, customer_name):
+    with open("purchases.txt", "a") as purchases_file:
+        purchases_file.write("Customer Name/ Table Number: ")
+        purchases_file.write(customer_name.get() + "\n")
+        purchases_file.write("Contents: ")
+        for i in items_in_order.get():
+            purchases_file.write(i)
+        purchases_file.write("\n")
+        purchases_file.close()
+    quit()
