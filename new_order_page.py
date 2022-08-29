@@ -5,7 +5,7 @@ import datetime
 
 def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button):
     root2 = Tk()
-    menu = Entry(root2, width=50, bg="#a3a3a3")
+    menu = Entry(root2, width=50, bg="#a3a3a3", )
     items_to_add_to_order = Entry(root2, width=50, bg="#a3a3a3")
     add_item_button = Button(root2, text="Add the item", command=lambda: add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2))
 
@@ -31,11 +31,12 @@ def get_menu():
 def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2):
     global all_items_in_the_order
     all_items_in_the_order = []
+    items_to_be_added_to_the_order = items_to_add_to_order.get()
     with open("items.json", "r") as json_file:
         json_file_thing = json.load(json_file)
         for i in json_file_thing:
             for j in range(len(json_file_thing[i])):
-                if items_to_add_to_order.get() == json_file_thing[i][j]["item name"]:
+                if items_to_be_added_to_the_order.lower() == json_file_thing[i][j]["item name"]:
                     items_in_order.pack()
                     add_item_to_order_button.pack_forget()
 
@@ -87,6 +88,7 @@ def checkout(items_in_order, customer_name):
         purchases_file.write("$" + str(item_price()) + "\n")
         purchases_file.write("Order's GST: ")
         purchases_file.write("$" + str(get_gst()) + "\n")
+        subtract_item()
     quit()
 
 
@@ -109,3 +111,23 @@ def get_gst():
     gst = 0.15
     total_gst = gst * order_price
     return total_gst
+
+
+def subtract_item():
+    all_items = "".join(all_items_in_the_order)
+    all_items = all_items.split(", ")
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        for item in all_items:
+            for i in json_file_thing:
+                for j in json_file_thing[i]:
+                    if j["item name"] == item:
+                        new_quantity = int(j["item quantity"])-1
+
+    with open("items.json", "w") as json_file:
+        for item in all_items:
+            for i in json_file_thing:
+                for j in json_file_thing[i]:
+                    if j["item name"] == item:
+                        j["item quantity"] = new_quantity
+        json_file.write(json.dumps(json_file_thing, indent=4))
