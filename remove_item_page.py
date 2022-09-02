@@ -16,6 +16,8 @@ def load_remove_item_page(old_root):
     # Generates Window
     old_root.destroy()
     root = Tk()
+    root.geometry("1920x1080")
+    root.title("Remove an Item")
 
     menu_string = update_label()
 
