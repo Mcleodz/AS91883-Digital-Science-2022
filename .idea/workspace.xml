@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_item_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_order_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_order_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,14 +129,7 @@
       <option name="project" value="LOCAL" />
       <updated>1661743200174</updated>
     </task>
-    <task id="LOCAL-00003" summary="improved GUI of Main window">
-      <created>1661895645706</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1661895645706</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,7 +146,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added &quot;checkout&quot; function and functionality" />
     <MESSAGE value="Subtracts 1 from item quantity when puchased" />
-    <MESSAGE value="improved GUI of Main window" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved GUI of Main window" />
+    <option name="LAST_COMMIT_MESSAGE" value="Subtracts 1 from item quantity when puchased" />
   </component>
 </project>

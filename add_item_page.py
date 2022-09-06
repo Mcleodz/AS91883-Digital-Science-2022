@@ -6,14 +6,16 @@ def load_add_item_page(old_root):
     # Generates Window
     old_root.destroy()
     root = Tk()
+    root.geometry("1920x1080")
+    root.title("Add an Item to the Menu")
 
     # Generates Text input boxes and buttons
     item_name_box = Entry(root, width=100, bg='#a4a4a4')
     item_quantity_box = Entry(root, width=100, bg='#a4a4a4')
     item_category_box = Entry(root, width=100, bg='#a4a4a4')
-    item_price_box = Entry(root, bg='#a4a4a4', width=50)
+    item_price_box = Entry(root, bg='#a4a4a4', width=100)
     item_description_box = Entry(root, width=100, bg='#a4a4a4')
-    submit_button = Button(root, text="Submit",
+    submit_button = Button(root, text="Submit", width=50, height=5,
                            command=lambda: save_items_to_json(root, item_name_box, item_description_box,
                                                               item_quantity_box,
                                                               item_price_box, item_category_box))
