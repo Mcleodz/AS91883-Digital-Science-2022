@@ -2,7 +2,10 @@ from tkinter import *
 import json
 import datetime
 
+now = datetime.datetime.now()
 
+
+# Loads Add item subpage
 def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button):
     root2 = Tk()
     menu = Entry(root2, width=50, bg="#a3a3a3", )
@@ -18,6 +21,7 @@ def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order
     menu.config(state='readonly')
 
 
+# gets Menu
 def get_menu():
     menu = []
     with open("items.json", "r") as json_file:
@@ -28,6 +32,7 @@ def get_menu():
     return ", ".join(menu)
 
 
+# adds item to order
 def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2):
     global all_items_in_the_order
     all_items_in_the_order = []
@@ -49,17 +54,18 @@ def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price
 
                     order_price.pack()
                     add_item_to_order_button.pack()
-                    checkout_button.pack()
                     root2.destroy()
 
                     order_price.config(state='normal')
                     order_price.delete(0, END)
                     order_price.insert(0, "Order Price: $" + str(item_price()))
                     order_price.config(state='readonly')
+                    checkout_button.pack()
 
                     break
 
 
+# Loads the New Order Page
 def load_new_order_page(old_root):
     old_root.destroy()
     root = Tk()
@@ -76,8 +82,13 @@ def load_new_order_page(old_root):
     customer_name.insert(0, 'Customer name / Table Number')
 
 
+# Saves the contents of the order to a text file
 def checkout(items_in_order, customer_name):
+    subtract_item()
     with open("purchases.txt", "a") as purchases_file:
+        purchases_file.write("Time of order: ")
+        purchases_file.write(now.strftime("%d / %m / %Y, %H:%M:%S"))
+        purchases_file.write("\n")
         purchases_file.write("Customer Name/ Table Number: ")
         purchases_file.write(customer_name.get() + "\n")
         purchases_file.write("Contents: ")
@@ -88,10 +99,11 @@ def checkout(items_in_order, customer_name):
         purchases_file.write("$" + str(item_price()) + "\n")
         purchases_file.write("Order's GST: ")
         purchases_file.write("$" + str(get_gst()) + "\n")
-        subtract_item()
+        purchases_file.write("\n")
     quit()
 
 
+# Finding the price of the items in the order
 def item_price():
     all_items = "".join(all_items_in_the_order)
     all_items = all_items.split(", ")
@@ -106,6 +118,7 @@ def item_price():
     return price
 
 
+# Gets the GST of the total order
 def get_gst():
     order_price = item_price()
     gst = 0.15
@@ -113,6 +126,7 @@ def get_gst():
     return total_gst
 
 
+# Subtracts one from each item in the order
 def subtract_item():
     all_items = "".join(all_items_in_the_order)
     all_items = all_items.split(", ")
@@ -123,11 +137,16 @@ def subtract_item():
                 for j in json_file_thing[i]:
                     if j["item name"] == item:
                         new_quantity = int(j["item quantity"])-1
-
-    with open("items.json", "w") as json_file:
-        for item in all_items:
-            for i in json_file_thing:
-                for j in json_file_thing[i]:
-                    if j["item name"] == item:
-                        j["item quantity"] = new_quantity
-        json_file.write(json.dumps(json_file_thing, indent=4))
+                        if new_quantity <= 0:
+                            print("That item is out of stock. Please restock it")
+                            quit()
+                        else:
+                            with open("items.json", "w") as json_file:
+                                for item in all_items:
+                                    for i in json_file_thing:
+                                        for j in json_file_thing[i]:
+                                            if j["item name"] == item:
+                                                j["item quantity"] = new_quantity
+                                json_file.write(json.dumps(json_file_thing, indent=4))
+                    else:
+                        pass
