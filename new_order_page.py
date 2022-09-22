@@ -1,6 +1,12 @@
 from tkinter import *
 import json
-import datetime
+from datetime import datetime
+
+def popup():
+    confirmation = Toplevel()
+    confirmation.geometry("250x250")
+    confirmation.title("Item Added")
+    Label(confirmation, text="That item is out of stock, please try again with something else", font=("Times New Roman", 20, "bold")).pack()
 
 
 def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button):
@@ -77,7 +83,11 @@ def load_new_order_page(old_root):
 
 
 def checkout(items_in_order, customer_name):
+    time_of_order = datetime.now()
     with open("purchases.txt", "a") as purchases_file:
+        purchases_file.write("\n")
+        purchases_file.write("\n")
+        purchases_file.write("Time: " + time_of_order.strftime("%d/%m/%Y %H:%M:%S") + "\n")
         purchases_file.write("Customer Name/ Table Number: ")
         purchases_file.write(customer_name.get() + "\n")
         purchases_file.write("Contents: ")
@@ -87,7 +97,7 @@ def checkout(items_in_order, customer_name):
         purchases_file.write("Price: ")
         purchases_file.write("$" + str(item_price()) + "\n")
         purchases_file.write("Order's GST: ")
-        purchases_file.write("$" + str(get_gst()) + "\n")
+        purchases_file.write("$" + str(get_gst()))
         subtract_item()
     quit()
 
@@ -114,20 +124,29 @@ def get_gst():
 
 
 def subtract_item():
-    all_items = "".join(all_items_in_the_order)
+    # Opens Json file in read mode to get value of the quantity
+    all_items = "".join(all_items_in_the_order).strip()
     all_items = all_items.split(", ")
-    with open("items.json", "r") as json_file:
-        json_file_thing = json.load(json_file)
-        for item in all_items:
+    for item in all_items:
+        with open("items.json", "r") as json_file:
+            json_file_thing = json.load(json_file)
             for i in json_file_thing:
                 for j in json_file_thing[i]:
                     if j["item name"] == item:
-                        new_quantity = int(j["item quantity"])-1
-
-    with open("items.json", "w") as json_file:
-        for item in all_items:
-            for i in json_file_thing:
-                for j in json_file_thing[i]:
-                    if j["item name"] == item:
-                        j["item quantity"] = new_quantity
-        json_file.write(json.dumps(json_file_thing, indent=4))
+                        # Checks if the new quantity is a valid quantity
+                        if int(j["item quantity"])-1 == -1:
+                            popup()
+                        else:
+                            new_quantity = int(j["item quantity"])-1
+                            print(int(j["item quantity"]))
+                            print(new_quantity)
+                            json_file.close()
+                            # Re-opens the file and overwrites the original quantity
+                            with open("items.json", "w") as json_file_write:
+                                for item in all_items:
+                                    for k in json_file_thing:
+                                        for l in json_file_thing[k]:
+                                            if l["item name"] == item:
+                                                l["item quantity"] = str(new_quantity)
+                                json_file_write.write(json.dumps(json_file_thing, indent=4))
+                                json_file_write.close()

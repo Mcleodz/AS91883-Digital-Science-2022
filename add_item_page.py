@@ -15,18 +15,24 @@ def load_add_item_page(old_root):
     item_category_box = Entry(root, width=100, bg='#a4a4a4')
     item_price_box = Entry(root, bg='#a4a4a4', width=100)
     item_description_box = Entry(root, width=100, bg='#a4a4a4')
-    submit_button = Button(root, text="Submit", width=50, height=5,
-                           command=lambda: save_items_to_json(root, item_name_box, item_description_box,
-                                                              item_quantity_box,
-                                                              item_price_box, item_category_box))
+    submit_button = Button(root, text="Submit", width=50, height=5, bg="#40bd40",
+                           command=lambda: intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box))
 
     # Puts all previously generated text boxes and button on the window
-    item_name_box.pack()
-    item_quantity_box.pack()
-    item_category_box.pack()
-    item_description_box.pack()
-    item_price_box.pack()
-    submit_button.pack()
+    item_name_box.pack(fill='both', expand=True)
+    item_quantity_box.pack(fill='both', expand=True)
+    item_category_box.pack(fill='both', expand=True)
+    item_description_box.pack(fill='both', expand=True)
+    item_price_box.pack(fill='both', expand=True)
+    submit_button.pack(fill='both', expand=True)
+
+    # Configures the Input boxes to fill the page
+    item_description_box.config(font=('comic sans', 15))
+    item_quantity_box.config(font=('comic sans', 15))
+    item_category_box.config(font=('comic sans', 15))
+    item_price_box.config(font=('comic sans', 15))
+    item_name_box.config(font=('comic sans', 15))
+    submit_button.config(font=('comic sans', 15))
 
     # Puts description of each text box inside
     item_name_box.insert(0, "Item Name")
@@ -36,7 +42,7 @@ def load_add_item_page(old_root):
     item_description_box.insert(0, "Item Description")
 
 
-def save_items_to_json(root, item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
+def save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
     # Puts all user inputs in dictionary
     json_object = {
         "item name": item_name_box.get().lower(),
@@ -55,3 +61,15 @@ def save_items_to_json(root, item_name_box, item_description_box, item_quantity_
     # Writes users input to Json file
     with open("items.json", "w") as json_file:
         json_file.write(test)
+
+
+def intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
+    popup()
+    save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box)
+
+
+def popup():
+    confirmation = Toplevel()
+    confirmation.geometry("250x250")
+    confirmation.title("Item Added")
+    Label(confirmation, text="This item has been added to the menu", font=("Times New Roman", 20, "bold")).pack()

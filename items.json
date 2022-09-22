@@ -2,19 +2,19 @@
     "coffee": [
         {
             "item name": "breakfast blend",
-            "item quantity": "3",
+            "item quantity": "2",
             "item description": "coffee pod",
             "item price": "0.9"
         },
         {
             "item name": "house blend",
-            "item quantity": 2,
+            "item quantity": "2",
             "item description": "coffee pod",
             "item price": "0.9"
         },
         {
             "item name": "espresso roast",
-            "item quantity": "3",
+            "item quantity": "2",
             "item description": "coffee pod",
             "item price": "0.9"
         }
@@ -22,13 +22,13 @@
     "additive to coffee": [
         {
             "item name": "milk shot",
-            "item quantity": "100000000000000000",
+            "item quantity": "0",
             "item description": "shot of milk to add to coffee",
             "item price": "0.5"
         },
         {
             "item name": "caramel drizzle",
-            "item quantity": "100000000000000000",
+            "item quantity": "0",
             "item description": "drizzle of caramel sauce to add to coffee",
             "item price": "1"
         }
