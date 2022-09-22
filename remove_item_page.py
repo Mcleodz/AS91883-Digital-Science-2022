@@ -22,7 +22,7 @@ def load_remove_item_page(old_root):
     menu_string = update_label()
 
     list_of_items = Entry(root, width=50, bg='#a3a3a3')
-    list_of_items.pack()
+    list_of_items.pack(fill=X, expand=0)
     list_of_items.insert(0, menu_string)
     list_of_items.config(state="readonly")
 

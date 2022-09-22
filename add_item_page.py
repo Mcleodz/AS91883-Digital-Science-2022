@@ -70,6 +70,6 @@ def intermediary_func(item_name_box, item_description_box, item_quantity_box, it
 
 def popup():
     confirmation = Toplevel()
-    confirmation.geometry("250x250")
+    confirmation.geometry("500x250")
     confirmation.title("Item Added")
-    Label(confirmation, text="This item has been added to the menu", font=("Times New Roman", 20, "bold")).pack()
+    Label(confirmation, text="This item has been added to the menu", font=("Spectral", 20, "bold")).pack()

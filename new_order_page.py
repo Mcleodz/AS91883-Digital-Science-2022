@@ -2,13 +2,16 @@ from tkinter import *
 import json
 from datetime import datetime
 
-def popup():
-    confirmation = Toplevel()
-    confirmation.geometry("250x250")
-    confirmation.title("Item Added")
-    Label(confirmation, text="That item is out of stock, please try again with something else", font=("Times New Roman", 20, "bold")).pack()
+
+# Alerts the user of an item being out of stock
+def out_of_stock_alert(item):
+    out_of_stock = Toplevel()
+    out_of_stock.geometry("500x50")
+    out_of_stock.title("out of stock item")
+    Label(out_of_stock, text=item + " is out of stock", font=("Times New Roman", 20, "bold")).pack()
 
 
+# Makes page to add items to the order
 def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button):
     root2 = Tk()
     menu = Entry(root2, width=50, bg="#a3a3a3", )
@@ -16,6 +19,7 @@ def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order
     add_item_button = Button(root2, text="Add the item", command=lambda: add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2))
 
     menu.pack()
+
     items_to_add_to_order.pack()
     add_item_button.pack()
 
@@ -24,6 +28,7 @@ def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order
     menu.config(state='readonly')
 
 
+# Gets all items on the menu
 def get_menu():
     menu = []
     with open("items.json", "r") as json_file:
@@ -34,15 +39,18 @@ def get_menu():
     return ", ".join(menu)
 
 
+# Adds the requested item to the order
 def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2):
     global all_items_in_the_order
     all_items_in_the_order = []
     items_to_be_added_to_the_order = items_to_add_to_order.get()
+    # Finds the requested item on the menu
     with open("items.json", "r") as json_file:
         json_file_thing = json.load(json_file)
         for i in json_file_thing:
             for j in range(len(json_file_thing[i])):
                 if items_to_be_added_to_the_order.lower() == json_file_thing[i][j]["item name"]:
+                    # Adds the requested item to the order along with the price
                     items_in_order.pack()
                     add_item_to_order_button.pack_forget()
 
@@ -64,15 +72,19 @@ def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price
                     order_price.config(state='readonly')
 
                     break
+                else:
+                    # If the requested item is not on the menu, the user is notified
+                    print("that item is not on the menu, Please check your spelling or add it to the menu")
 
 
+# Loads the "New Order Page" and destroys old root
 def load_new_order_page(old_root):
     old_root.destroy()
     root = Tk()
 
     customer_name = Entry(root, width=50, bg='#a3a3a3')
     items_in_order = Entry(root, width=50, bg='#a3a3a3')
-    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button))
+    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda:items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button))
     checkout_button = Button(root, text="checkout", command=lambda: checkout(items_in_order, customer_name))
     order_price = Entry(root, width=50, bg='#a3a3a3')
 
@@ -82,6 +94,7 @@ def load_new_order_page(old_root):
     customer_name.insert(0, 'Customer name / Table Number')
 
 
+# Saves the contents of the order to a file and runs code to remove the amount of items from the menu
 def checkout(items_in_order, customer_name):
     time_of_order = datetime.now()
     with open("purchases.txt", "a") as purchases_file:
@@ -99,9 +112,9 @@ def checkout(items_in_order, customer_name):
         purchases_file.write("Order's GST: ")
         purchases_file.write("$" + str(get_gst()))
         subtract_item()
-    quit()
 
 
+# Calculates the total price of the order
 def item_price():
     all_items = "".join(all_items_in_the_order)
     all_items = all_items.split(", ")
@@ -116,6 +129,7 @@ def item_price():
     return price
 
 
+# Calculates the GST Value of the order
 def get_gst():
     order_price = item_price()
     gst = 0.15
@@ -123,23 +137,22 @@ def get_gst():
     return total_gst
 
 
+# Removes one from the quantity of every item in the order
 def subtract_item():
     # Opens Json file in read mode to get value of the quantity
-    all_items = "".join(all_items_in_the_order).strip()
+    all_items = "".join(all_items_in_the_order).strip(",")
     all_items = all_items.split(", ")
-    for item in all_items:
-        with open("items.json", "r") as json_file:
-            json_file_thing = json.load(json_file)
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        for item in all_items:
             for i in json_file_thing:
                 for j in json_file_thing[i]:
                     if j["item name"] == item:
                         # Checks if the new quantity is a valid quantity
-                        if int(j["item quantity"])-1 == -1:
-                            popup()
+                        if int(j["item quantity"])-1 == (0-1):
+                            out_of_stock_alert(item)
                         else:
                             new_quantity = int(j["item quantity"])-1
-                            print(int(j["item quantity"]))
-                            print(new_quantity)
                             json_file.close()
                             # Re-opens the file and overwrites the original quantity
                             with open("items.json", "w") as json_file_write:
@@ -150,3 +163,4 @@ def subtract_item():
                                                 l["item quantity"] = str(new_quantity)
                                 json_file_write.write(json.dumps(json_file_thing, indent=4))
                                 json_file_write.close()
+                                quit()

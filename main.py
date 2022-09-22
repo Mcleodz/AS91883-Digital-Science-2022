@@ -5,7 +5,7 @@ from new_order_page import *
 # Creates Main Window
 root = Tk()
 root.geometry("1920x1080")
-root.title("")
+root.title("Main")
 
 
 # Pack's buttons into Main Window
