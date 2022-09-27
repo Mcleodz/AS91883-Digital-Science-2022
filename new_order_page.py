@@ -6,22 +6,32 @@ from datetime import datetime
 # Alerts the user of an item being out of stock
 def out_of_stock_alert(item):
     out_of_stock = Toplevel()
-    out_of_stock.geometry("500x50")
+    out_of_stock.geometry("1000x50")
     out_of_stock.title("out of stock item")
     Label(out_of_stock, text=item + " is out of stock", font=("Times New Roman", 20, "bold")).pack()
+
+
+def incorrectly_spelt():
+    out_of_stock = Toplevel()
+    out_of_stock.geometry("1000x50")
+    out_of_stock.title("item is incorrectly spelt")
+    Label(out_of_stock, text="this item is not spelt correctly, Please try again", font=("Times New Roman", 20, "bold")).pack()
 
 
 # Makes page to add items to the order
 def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button):
     root2 = Tk()
-    menu = Entry(root2, width=50, bg="#a3a3a3", )
-    items_to_add_to_order = Entry(root2, width=50, bg="#a3a3a3")
-    add_item_button = Button(root2, text="Add the item", command=lambda: add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2))
+    root2.title("Add an item to the menu")
+    root2.geometry("1920x1080")
 
-    menu.pack()
+    menu = Entry(root2, width=50, bg="#a3a3a3", font=("Times New Roman", 15, 'bold'))
+    items_to_add_to_order = Entry(root2, width=50, bg="#a3a3a3", font=("Times New Roman", 15, 'bold'))
+    add_item_button = Button(root2, text="Add the item", command=lambda: add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, root2), font=("Times New Roman", 15, 'bold'), bg="#40bd40")
 
-    items_to_add_to_order.pack()
-    add_item_button.pack()
+    menu.pack(fill="both")
+
+    items_to_add_to_order.pack(fill="both")
+    add_item_button.pack(fill="both")
 
     menu.insert(0, get_menu())
 
@@ -51,7 +61,7 @@ def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price
             for j in range(len(json_file_thing[i])):
                 if items_to_be_added_to_the_order.lower() == json_file_thing[i][j]["item name"]:
                     # Adds the requested item to the order along with the price
-                    items_in_order.pack()
+                    items_in_order.pack(fill='both')
                     add_item_to_order_button.pack_forget()
 
                     items_in_order.config(state='normal')
@@ -61,9 +71,9 @@ def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price
 
                     add_item_to_order_button.config(text="Add another item to order")
 
-                    order_price.pack()
-                    add_item_to_order_button.pack()
-                    checkout_button.pack()
+                    order_price.pack(fill='both')
+                    add_item_to_order_button.pack(fill='both')
+                    checkout_button.pack(fill='both')
                     root2.destroy()
 
                     order_price.config(state='normal')
@@ -72,24 +82,26 @@ def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price
                     order_price.config(state='readonly')
 
                     break
-                else:
-                    # If the requested item is not on the menu, the user is notified
-                    print("that item is not on the menu, Please check your spelling or add it to the menu")
+        else:
+            # If the requested item is not on the menu, the user is notified
+            incorrectly_spelt()
 
 
 # Loads the "New Order Page" and destroys old root
 def load_new_order_page(old_root):
     old_root.destroy()
     root = Tk()
+    root.title("New Order")
+    root.geometry("1920x1080")
 
-    customer_name = Entry(root, width=50, bg='#a3a3a3')
-    items_in_order = Entry(root, width=50, bg='#a3a3a3')
-    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda:items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button))
-    checkout_button = Button(root, text="checkout", command=lambda: checkout(items_in_order, customer_name))
-    order_price = Entry(root, width=50, bg='#a3a3a3')
+    customer_name = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    items_in_order = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button), font=("Times New Roman", 15, 'bold'), bg="#b3b3b3", border=True, borderwidth="10")
+    checkout_button = Button(root, text="checkout", command=lambda: checkout(items_in_order, customer_name), font=("Times New Roman", 15, 'bold'), bg="#40bd40")
+    order_price = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
 
-    customer_name.pack()
-    add_item_to_order_button.pack()
+    customer_name.pack(fill="both")
+    add_item_to_order_button.pack(fill="both")
 
     customer_name.insert(0, 'Customer name / Table Number')
 

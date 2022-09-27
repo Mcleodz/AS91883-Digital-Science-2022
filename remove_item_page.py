@@ -2,6 +2,7 @@ import json
 from tkinter import *
 
 
+# Updates the text box displaying th Menu
 def update_label():
     menu = []
     with open("items.json", "r") as json_file:
@@ -11,7 +12,7 @@ def update_label():
                 menu.append(j["item name"])
     return ", ".join(menu)
 
-
+# Loads the "Remove item" page for the user
 def load_remove_item_page(old_root):
     # Generates Window
     old_root.destroy()
@@ -34,6 +35,7 @@ def load_remove_item_page(old_root):
     removing_item_button.pack()
 
 
+# Removes the requested item from the menu
 def remove_item(item_to_remove, list_of_items_label):
     item_being_removed = item_to_remove.get()
     with open("items.json", "r") as json_file:

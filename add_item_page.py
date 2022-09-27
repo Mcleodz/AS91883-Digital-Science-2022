@@ -10,11 +10,11 @@ def load_add_item_page(old_root):
     root.title("Add an Item to the Menu")
 
     # Generates Text input boxes and buttons
-    item_name_box = Entry(root, width=100, bg='#a4a4a4')
-    item_quantity_box = Entry(root, width=100, bg='#a4a4a4')
-    item_category_box = Entry(root, width=100, bg='#a4a4a4')
-    item_price_box = Entry(root, bg='#a4a4a4', width=100)
-    item_description_box = Entry(root, width=100, bg='#a4a4a4')
+    item_name_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
+    item_quantity_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
+    item_category_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
+    item_price_box = Entry(root, bg='#a4a4a4', width=100, font=("Times New Roman", 20, "bold"))
+    item_description_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
     submit_button = Button(root, text="Submit", width=50, height=5, bg="#40bd40",
                            command=lambda: intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box))
 
@@ -27,18 +27,18 @@ def load_add_item_page(old_root):
     submit_button.pack(fill='both', expand=True)
 
     # Configures the Input boxes to fill the page
-    item_description_box.config(font=('comic sans', 15))
-    item_quantity_box.config(font=('comic sans', 15))
-    item_category_box.config(font=('comic sans', 15))
-    item_price_box.config(font=('comic sans', 15))
-    item_name_box.config(font=('comic sans', 15))
-    submit_button.config(font=('comic sans', 15))
+    item_description_box.config(font=("Times New Roman", 20, "bold"))
+    item_quantity_box.config(font=("Times New Roman", 20, "bold"))
+    item_category_box.config(font=("Times New Roman", 20, "bold"))
+    item_price_box.config(font=("Times New Roman", 20, "bold"))
+    item_name_box.config(font=("Times New Roman", 20, "bold"))
+    submit_button.config(font=("Times New Roman", 20, "bold"))
 
     # Puts description of each text box inside
     item_name_box.insert(0, "Item Name")
     item_quantity_box.insert(0, "Item Quantity (Must be a whole number)")
     item_category_box.insert(0, "Item Category")
-    item_price_box.insert(0, "Item Price (Must be a number")
+    item_price_box.insert(0, "Item Price (Must be a number)")
     item_description_box.insert(0, "Item Description")
 
 
@@ -72,4 +72,4 @@ def popup():
     confirmation = Toplevel()
     confirmation.geometry("500x250")
     confirmation.title("Item Added")
-    Label(confirmation, text="This item has been added to the menu", font=("Spectral", 20, "bold")).pack()
+    Label(confirmation, text="This item has been added to the menu", font=("Times New Roman", 20, "bold")).pack()

@@ -4,7 +4,6 @@
     <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_item_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new_order_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_order_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/remove_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove_item_page.py" afterDir="false" />
@@ -145,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663810717165</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="all works">
+      <created>1663888010240</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663888010240</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -163,6 +169,7 @@
     <MESSAGE value="added &quot;checkout&quot; function and functionality" />
     <MESSAGE value="Subtracts 1 from item quantity when puchased" />
     <MESSAGE value="all works (Mostly)" />
-    <option name="LAST_COMMIT_MESSAGE" value="all works (Mostly)" />
+    <MESSAGE value="all works" />
+    <option name="LAST_COMMIT_MESSAGE" value="all works" />
   </component>
 </project>
