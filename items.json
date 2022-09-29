@@ -1,10 +1,2 @@
 {
-    "yum drink": [
-        {
-            "item name": "coffee",
-            "item quantity": "9",
-            "item description": "mmmmm",
-            "item price": "10"
-        }
-    ]
 }
