@@ -56,20 +56,20 @@ def get_menu():
 def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, back_button, root2):
     global all_items_in_the_order
     all_items_in_the_order = []
-    items_to_be_added_to_the_order = items_to_add_to_order.get()
+    items_to_be_added_to_the_order = items_to_add_to_order.get().lower()
     # Finds the requested item on the menu
     with open("items.json", "r") as json_file:
         json_file_thing = json.load(json_file)
         for i in json_file_thing:
             for j in range(len(json_file_thing[i])):
-                if items_to_be_added_to_the_order.lower() == json_file_thing[i][j]["item name"]:
+                if items_to_be_added_to_the_order == json_file_thing[i][j]["item name"]:
                     # Adds the requested item to the order along with the price
                     items_in_order.pack(fill='both')
                     add_item_to_order_button.pack_forget()
                     back_button.pack_forget()
 
                     items_in_order.config(state='normal')
-                    items_in_order.insert(END, items_to_add_to_order.get() + ", ")
+                    items_in_order.insert(END, json_file_thing[i][j]["item name"] + ", ")
                     items_in_order.config(state='readonly', bg="#a3a3a3")
                     all_items_in_the_order.append(items_in_order.get())
 
