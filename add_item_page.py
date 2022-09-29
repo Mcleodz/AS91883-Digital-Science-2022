@@ -2,9 +2,8 @@ from tkinter import *
 import json
 
 
-def load_add_item_page(old_root):
+def load_add_item_page():
     # Generates Window
-    old_root.destroy()
     root = Tk()
     root.geometry("1920x1080")
     root.title("Add an Item to the Menu")
@@ -15,8 +14,9 @@ def load_add_item_page(old_root):
     item_category_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
     item_price_box = Entry(root, bg='#a4a4a4', width=100, font=("Times New Roman", 20, "bold"))
     item_description_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
-    submit_button = Button(root, text="Submit", width=50, height=5, bg="#40bd40",
+    submit_button = Button(root, text="Submit", width=50, bg="#40bd40",
                            command=lambda: intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box))
+    back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
 
     # Puts all previously generated text boxes and button on the window
     item_name_box.pack(fill='both', expand=True)
@@ -25,6 +25,7 @@ def load_add_item_page(old_root):
     item_description_box.pack(fill='both', expand=True)
     item_price_box.pack(fill='both', expand=True)
     submit_button.pack(fill='both', expand=True)
+    back_button.pack(fill='both', expand=True)
 
     # Configures the Input boxes to fill the page
     item_description_box.config(font=("Times New Roman", 20, "bold"))

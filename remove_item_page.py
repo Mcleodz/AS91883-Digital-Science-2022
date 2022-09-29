@@ -12,28 +12,32 @@ def update_label():
                 menu.append(j["item name"])
     return ", ".join(menu)
 
+
 # Loads the "Remove item" page for the user
-def load_remove_item_page(old_root):
+def load_remove_item_page():
     # Generates Window
-    old_root.destroy()
     root = Tk()
     root.geometry("1920x1080")
     root.title("Remove an Item")
 
     menu_string = update_label()
 
-    list_of_items = Entry(root, width=50, bg='#a3a3a3')
+    list_of_items = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
     list_of_items.pack(fill=X, expand=0)
     list_of_items.insert(0, menu_string)
     list_of_items.config(state="readonly")
 
-    item_to_remove = Entry(root, width=50, bg='#a3a3a3')
-    item_to_remove.pack()
+    item_to_remove = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    item_to_remove.pack(fill='both', expand=True)
 
     removing_item_button = Button(root, text="Remove Selected item",
-                                  command=lambda: remove_item(item_to_remove, list_of_items))
-    removing_item_button.pack()
+                                  command=lambda: remove_item(item_to_remove, list_of_items), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
+    back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
 
+    removing_item_button.pack(fill='both', expand=True)
+    back_button.pack(fill='both', expand=True)
+
+    item_to_remove.insert(0, "(type the item you wish to remove here)")
 
 # Removes the requested item from the menu
 def remove_item(item_to_remove, list_of_items_label):

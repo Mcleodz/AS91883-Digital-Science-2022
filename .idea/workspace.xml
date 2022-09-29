@@ -4,6 +4,7 @@
     <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/add_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_item_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/new_order_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_order_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/remove_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove_item_page.py" afterDir="false" />
