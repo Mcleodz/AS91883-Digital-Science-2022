@@ -13,6 +13,14 @@ def update_label():
     return ", ".join(menu)
 
 
+# Alerts the user of an item being incorrectly spelt
+def incorrectly_spelt():
+    incorrectly_spelt = Toplevel()
+    incorrectly_spelt.geometry("1000x50")
+    incorrectly_spelt.title("item is incorrectly spelt")
+    Label(incorrectly_spelt, text="this item is not spelt correctly, Please try again", font=("Times New Roman", 20, "bold")).pack()
+
+
 # Loads the "Remove item" page for the user
 def load_remove_item_page():
     # Generates Window
@@ -48,6 +56,8 @@ def remove_item(item_to_remove, list_of_items_label):
             for j in range(len(json_file_thing[i])):
                 if item_being_removed == json_file_thing[i][j]["item name"]:
                     json_file_thing[i].remove(json_file_thing[i][j])
+                else:
+                    incorrectly_spelt()
     with open("items.json", "w") as json_file:
         to_write = json.dumps(json_file_thing, indent=4)
         json_file.write(to_write)
