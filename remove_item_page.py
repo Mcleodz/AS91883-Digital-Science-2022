@@ -41,7 +41,7 @@ def load_remove_item_page():
 
 # Removes the requested item from the menu
 def remove_item(item_to_remove, list_of_items_label):
-    item_being_removed = item_to_remove.get()
+    item_being_removed = item_to_remove.get().lower()
     with open("items.json", "r") as json_file:
         json_file_thing = json.load(json_file)
         for i in json_file_thing:
