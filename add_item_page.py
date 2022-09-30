@@ -3,16 +3,17 @@ import json
 
 
 def invalid_price():
-    invalid_price = Toplevel()
-    invalid_price.geometry("500x250")
+    invalid_price = Tk()
+    invalid_price.geometry("1000x250")
     invalid_price.title("Invalid Price")
     Label(invalid_price, text="This is an invalid Price, Please input a number", font=("Times New Roman", 20, "bold")).pack()
-    
+
+
 def invalid_quantity():
-    invalid_quantity = TopLevel()
-    invalid_quantity.geometry("500x250")
-    invaild_quantity.title("Invalid Quantity")
-    Label(invalid_qunatity, text="This is an invalid Quantity, Please input a whole number to continue", font=("Times New Roman", 20, "bold")).pack()
+    invalid_quantity = Tk()
+    invalid_quantity.geometry("1000x250")
+    invalid_quantity.title("Invalid Quantity")
+    Label(invalid_quantity, text="This is an invalid Quantity, Please input a whole number to continue", font=("Times New Roman", 20, "bold")).pack()
     
 
 def load_add_item_page():
@@ -28,7 +29,7 @@ def load_add_item_page():
     item_price_box = Entry(root, bg='#a4a4a4', width=100, font=("Times New Roman", 20, "bold"))
     item_description_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
     submit_button = Button(root, text="Submit", width=50, bg="#40bd40",
-                           command=lambda: intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box))
+                           command=lambda: save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box))
     back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
 
     # Puts all previously generated text boxes and button on the window
@@ -58,12 +59,9 @@ def load_add_item_page():
 
 def save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
     # Puts all user inputs in dictionary
-    if not item_quantity_box.get().isnum():
+    if not str(item_quantity_box.get()).isnumeric():
         invalid_quantity()
-        
-    elif not item_price_box.get().isnum():
-        invalid_price()
-        
+
     else:
         json_object = {
             "item name": item_name_box.get().lower(),
@@ -74,7 +72,7 @@ def save_items_to_json(item_name_box, item_description_box, item_quantity_box, i
         # Loads Json file and checks its contents
         with open("items.json", "r") as json_file:
             json_file_thing = json.load(json_file)
-            # Checks if category is in json file and if not adds category
+        # Checks if category is in json file and if not adds category
             if not item_category_box.get().lower() in json_file_thing:
                 json_file_thing[item_category_box.get().lower()] = []
             json_file_thing[item_category_box.get().lower()].append(json_object)
@@ -82,11 +80,7 @@ def save_items_to_json(item_name_box, item_description_box, item_quantity_box, i
         # Writes users input to Json file
         with open("items.json", "w") as json_file:
             json_file.write(test)
-
-
-def intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
-    popup()
-    save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box)
+        popup()
 
 
 def popup():
