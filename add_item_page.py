@@ -2,6 +2,19 @@ from tkinter import *
 import json
 
 
+def invalid_price():
+    invalid_price = Toplevel()
+    invalid_price.geometry("500x250")
+    invalid_price.title("Invalid Price")
+    Label(invalid_price, text="This is an invalid Price, Please input a number", font=("Times New Roman", 20, "bold")).pack()
+    
+def invalid_quantity():
+    invalid_quantity = TopLevel()
+    invalid_quantity.geometry("500x250")
+    invaild_quantity.title("Invalid Quantity")
+    Label(invalid_qunatity, text="This is an invalid Quantity, Please input a whole number to continue", font=("Times New Roman", 20, "bold")).pack()
+    
+
 def load_add_item_page():
     # Generates Window
     root = Tk()
@@ -45,23 +58,30 @@ def load_add_item_page():
 
 def save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
     # Puts all user inputs in dictionary
-    json_object = {
-        "item name": item_name_box.get().lower(),
-        "item quantity": item_quantity_box.get().lower(),
-        "item description": item_description_box.get().lower(),
-        "item price": item_price_box.get().lower()
-    }
-    # Loads Json file and checks its contents
-    with open("items.json", "r") as json_file:
-        json_file_thing = json.load(json_file)
-        # Checks if category is in json file and if not adds category
-        if not item_category_box.get().lower() in json_file_thing:
-            json_file_thing[item_category_box.get().lower()] = []
-        json_file_thing[item_category_box.get().lower()].append(json_object)
-        test = json.dumps(json_file_thing, indent=4)
-    # Writes users input to Json file
-    with open("items.json", "w") as json_file:
-        json_file.write(test)
+    if not item_quantity_box.get().isnum():
+        invalid_quantity()
+        
+    elif not item_price_box.get().isnum():
+        invalid_price()
+        
+    else:
+        json_object = {
+            "item name": item_name_box.get().lower(),
+            "item quantity": item_quantity_box.get().lower(),
+            "item description": item_description_box.get().lower(),
+            "item price": item_price_box.get().lower()
+        }
+        # Loads Json file and checks its contents
+        with open("items.json", "r") as json_file:
+            json_file_thing = json.load(json_file)
+            # Checks if category is in json file and if not adds category
+            if not item_category_box.get().lower() in json_file_thing:
+                json_file_thing[item_category_box.get().lower()] = []
+            json_file_thing[item_category_box.get().lower()].append(json_object)
+            test = json.dumps(json_file_thing, indent=4)
+        # Writes users input to Json file
+        with open("items.json", "w") as json_file:
+            json_file.write(test)
 
 
 def intermediary_func(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
@@ -74,3 +94,4 @@ def popup():
     confirmation.geometry("500x250")
     confirmation.title("Item Added")
     Label(confirmation, text="This item has been added to the menu", font=("Times New Roman", 20, "bold")).pack()
+    
