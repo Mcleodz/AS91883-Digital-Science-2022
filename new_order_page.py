@@ -5,17 +5,17 @@ from datetime import datetime
 
 # Alerts the user of an item being out of stock
 def out_of_stock_alert(item):
-    out_of_stock = Toplevel()
+    out_of_stock = Toplevel()   # Trialing Reference: 3 - Out of Stock Popup
     out_of_stock.geometry("1000x50")
     out_of_stock.title("out of stock item")
     Label(out_of_stock, text=item + " is out of stock", font=("Times New Roman", 20, "bold")).pack()
 
-
+# Alerts the user of an item being incorrectly spelt
 def incorrectly_spelt():
-    out_of_stock = Toplevel()
-    out_of_stock.geometry("1000x50")
-    out_of_stock.title("item is incorrectly spelt")
-    Label(out_of_stock, text="this item is not spelt correctly, Please try again", font=("Times New Roman", 20, "bold")).pack()
+    incorrectly_spelt = Toplevel()  # Trialling Reference: 4 - Incorrectly Spelt Item Popup
+    incorrectly_spelt.geometry("1000x50")
+    incorrectly_spelt.title("item is incorrectly spelt")
+    Label(incorrectly_spelt, text="this item is not spelt correctly, Please try again", font=("Times New Roman", 20, "bold")).pack()
 
 
 # Makes page to add items to the order
