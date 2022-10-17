@@ -39,7 +39,7 @@ def load_remove_item_page():
     item_to_remove.pack(fill='both', expand=True)
 
     removing_item_button = Button(root, text="Remove Selected item",
-                                  command=lambda: remove_item(item_to_remove, list_of_items), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
+                                  command=lambda: check_item_spelling(item_to_remove, list_of_items), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
     back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
 
     removing_item_button.pack(fill='both', expand=True)
@@ -56,8 +56,9 @@ def remove_item(item_to_remove, list_of_items_label):
             for j in range(len(json_file_thing[i])):
                 if item_being_removed == json_file_thing[i][j]["item name"]:
                     json_file_thing[i].remove(json_file_thing[i][j])
+                    not_an_item = False
                 else:
-                    incorrectly_spelt()
+                    not_an_item = True
     with open("items.json", "w") as json_file:
         to_write = json.dumps(json_file_thing, indent=4)
         json_file.write(to_write)
@@ -66,3 +67,9 @@ def remove_item(item_to_remove, list_of_items_label):
     list_of_items_label.insert(0, update_label())
     list_of_items_label.config(state="readonly")
     item_to_remove.delete(0, END)
+    if not_an_item:
+        return True
+
+def check_item_spelling(item_to_remove, list_of_items_label):
+    if remove_item(item_to_remove, list_of_items_label):
+        incorrectly_spelt()

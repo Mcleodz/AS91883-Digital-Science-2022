@@ -2,18 +2,11 @@ from tkinter import *
 import json
 
 
-def invalid_price():
-    invalid_price = Tk()
-    invalid_price.geometry("1000x250")
-    invalid_price.title("Invalid Price")
-    Label(invalid_price, text="This is an invalid Price, Please input a number", font=("Times New Roman", 20, "bold")).pack()
-
-
 def invalid_quantity():
     invalid_quantity = Tk()
     invalid_quantity.geometry("1000x250")
     invalid_quantity.title("Invalid Quantity")
-    Label(invalid_quantity, text="This is an invalid Quantity, Please input a whole number to continue", font=("Times New Roman", 20, "bold")).pack()
+    Label(invalid_quantity, text="This is an invalid Quantity, Please input a whole number to continue", font=("Times New Roman", 20, "bold")).grid(row=0)
     
 
 def load_add_item_page():
@@ -21,6 +14,14 @@ def load_add_item_page():
     root = Tk()
     root.geometry("1920x1080")
     root.title("Add an Item to the Menu")
+    root.configure(background="#a4a4a4")
+
+    # Creates Labels to describe what the text entry boxes DO!
+    item_name_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Name")
+    item_quantity_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Quantity")
+    item_category_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Category")
+    item_description_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Description")
+    item_price_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Price")
 
     # Generates Text input boxes and buttons
     item_name_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
@@ -30,31 +31,39 @@ def load_add_item_page():
     item_description_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
     submit_button = Button(root, text="Submit", width=50, bg="#40bd40",
                            command=lambda: save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box))
-    back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
+    back_button = Button(root, text=" Back ", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
 
-    # Puts all previously generated text boxes and button on the window
-    item_name_box.pack(fill='both', expand=True)
-    item_quantity_box.pack(fill='both', expand=True)
-    item_category_box.pack(fill='both', expand=True)
-    item_description_box.pack(fill='both', expand=True)
-    item_price_box.pack(fill='both', expand=True)
-    submit_button.pack(fill='both', expand=True)
-    back_button.pack(fill='both', expand=True)
+    # Puts all previously generated labels into the load item window
+    item_name_box_label.grid(row=0, column=0)
+    item_quantity_box_label.grid(row=1, column=0)
+    item_category_box_label.grid(row=2, column=0)
+    item_description_box_label.grid(row=3, column=0)
+    item_price_box_label.grid(row=4, column=0)
+    submit_button.grid(row=5, column=1, sticky=W, pady=2)
+    back_button.grid(row=5, column=0, sticky=W, pady=2)
 
-    # Configures the Input boxes to fill the page
-    item_description_box.config(font=("Times New Roman", 20, "bold"))
-    item_quantity_box.config(font=("Times New Roman", 20, "bold"))
-    item_category_box.config(font=("Times New Roman", 20, "bold"))
+    # Puts all previously generated text boxes and buttons on the window
+    item_name_box.grid(row=0, column=1)
+    item_quantity_box.grid(row=1, column=1)
+    item_category_box.grid(row=2, column=1)
+    item_description_box.grid(row=3, column=1)
+    item_price_box.grid(row=4, column=1)
+
+    # Configures the Input boxes labels to fill the page
+    item_description_box_label.config(font=("Times New Roman", 20, "bold"))
+    item_quantity_box_label.config(font=("Times New Roman", 20, "bold"))
+    item_category_box_label.config(font=("Times New Roman", 20, "bold"))
+    item_price_box_label.config(font=("Times New Roman", 20, "bold"))
+    item_name_box_label.config(font=("Times New Roman", 20, "bold"))
+
     item_price_box.config(font=("Times New Roman", 20, "bold"))
+    item_description_box.config(font=("Times New Roman", 20, "bold"))
+    item_category_box.config(font=("Times New Roman", 20, "bold"))
+    item_quantity_box.config(font=("Times New Roman", 20, "bold"))
     item_name_box.config(font=("Times New Roman", 20, "bold"))
-    submit_button.config(font=("Times New Roman", 20, "bold"))
 
-    # Puts description of each text box inside
-    item_name_box.insert(0, "Item Name")
-    item_quantity_box.insert(0, "Item Quantity (Must be a whole number)")
-    item_category_box.insert(0, "Item Category")
-    item_price_box.insert(0, "Item Price (Must be a number)")
-    item_description_box.insert(0, "Item Description")
+    submit_button.config(font=("Times New Roman", 20, "bold"), height=5, width=80)
+    back_button.config(font=("Times New Roman", 20, "bold"), height=5, width=80)
 
 
 def save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
@@ -87,5 +96,5 @@ def popup():
     confirmation = Toplevel()
     confirmation.geometry("500x250")
     confirmation.title("Item Added")
-    Label(confirmation, text="This item has been added to the menu", font=("Times New Roman", 20, "bold")).pack()
-    
+    confirmation_label = Label(confirmation, text="This item has been added to the menu", font=("Times New Roman", 20, "bold"))
+    confirmation_label.grid(row=0, column=3)

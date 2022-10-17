@@ -1,2 +1,4 @@
 # AS91883-Digital-Science-2022
-Program design for hospitality staff, programmed for Digital Science Standard AS91883.
+Program designed to allow hospitality staff to place orders on behalf of customers, add and remove items from the users' menu.
+
+This program is designed for NCEA's AS91883.
