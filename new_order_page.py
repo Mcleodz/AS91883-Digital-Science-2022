@@ -188,7 +188,7 @@ def subtract_item():
                 for j in json_file_thing[i]:
                     if j["item name"] == item:
                         # Checks if the new quantity is a valid quantity
-                        if int(j["item quantity"])-1 <= 0:
+                        if int(j["item quantity"])-1 < 0:
                             out_of_stock_alert(item)
                             return True
                         else:

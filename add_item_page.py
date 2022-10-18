@@ -17,11 +17,11 @@ def load_add_item_page():
     root.configure(background="#a4a4a4")
 
     # Creates Labels to describe what the text entry boxes DO!
-    item_name_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Name")
-    item_quantity_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Quantity")
-    item_category_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Category")
-    item_description_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Description")
-    item_price_box_label = Label(root, width=80, bg='#c3c3c3', text="Item Price")
+    item_name_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Name")
+    item_quantity_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Quantity (Must be a Whole Number")
+    item_category_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Category")
+    item_description_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Description")
+    item_price_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Price (Must be a Number")
 
     # Generates Text input boxes and buttons
     item_name_box = Entry(root, width=100, bg='#a4a4a4', font=("Times New Roman", 20, "bold"))
@@ -62,8 +62,8 @@ def load_add_item_page():
     item_quantity_box.config(font=("Times New Roman", 20, "bold"))
     item_name_box.config(font=("Times New Roman", 20, "bold"))
 
-    submit_button.config(font=("Times New Roman", 20, "bold"), height=5, width=80)
-    back_button.config(font=("Times New Roman", 20, "bold"), height=5, width=80)
+    submit_button.config(font=("Times New Roman", 20, "bold"), height=5, width=60)
+    back_button.config(font=("Times New Roman", 20, "bold"), height=5, width=60)
 
 
 def save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
