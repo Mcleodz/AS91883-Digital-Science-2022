@@ -47,6 +47,7 @@ def load_remove_item_page():
 
     item_to_remove.insert(0, "(type the item you wish to remove here)")
 
+
 # Removes the requested item from the menu
 def remove_item(item_to_remove, list_of_items_label):
     item_being_removed = item_to_remove.get().lower()
@@ -54,7 +55,7 @@ def remove_item(item_to_remove, list_of_items_label):
         json_file_thing = json.load(json_file)
         for i in json_file_thing:
             for j in range(len(json_file_thing[i])):
-                if item_being_removed == json_file_thing[i][j]["item name"]:
+                if item_being_removed == j["item name"]:
                     json_file_thing[i].remove(json_file_thing[i][j])
                     not_an_item = False
                 else:
@@ -69,6 +70,7 @@ def remove_item(item_to_remove, list_of_items_label):
     item_to_remove.delete(0, END)
     if not_an_item:
         return True
+
 
 def check_item_spelling(item_to_remove, list_of_items_label):
     if remove_item(item_to_remove, list_of_items_label):

@@ -7,6 +7,13 @@ def invalid_quantity():
     invalid_quantity.geometry("1000x250")
     invalid_quantity.title("Invalid Quantity")
     Label(invalid_quantity, text="This is an invalid Quantity, Please input a whole number to continue", font=("Times New Roman", 20, "bold")).grid(row=0)
+
+
+def item_existance():
+    item_already_exists = Tk()
+    item_already_exists.geometry("1000x250")
+    item_already_exists.title("Item already Exists")
+    Label(item_already_exists, text="This item is already on your menu, please rename the item to continue", font=("Times New Roman", 20, "bold")).grid(row=0)
     
 
 def load_add_item_page():
@@ -66,12 +73,30 @@ def load_add_item_page():
     back_button.config(font=("Times New Roman", 20, "bold"), height=5, width=60)
 
 
+def check_item(item_name_box):
+    item_list = []
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        item_list = item_name_box.get().lower()
+        item_list2 = "".join(item_list)
+        item_list3 = item_list2.split(", ")
+        for item in item_list3:
+            for i in json_file_thing:
+                for j in json_file_thing[i]:
+                    if j["item name"] == item:
+                        return True
+
+
 def save_items_to_json(item_name_box, item_description_box, item_quantity_box, item_price_box, item_category_box):
-    # Puts all user inputs in dictionary
-    if not str(item_quantity_box.get()).isnumeric():
+    # Checks if any items with the same name already exist
+    if check_item(item_name_box):
+        item_existance()
+
+    elif not str(item_quantity_box.get()).isnumeric():
         invalid_quantity()
 
     else:
+        # Puts all user inputs in dictionary
         json_object = {
             "item name": item_name_box.get().lower(),
             "item quantity": item_quantity_box.get().lower(),
