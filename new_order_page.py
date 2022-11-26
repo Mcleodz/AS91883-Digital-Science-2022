@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Alerts the user of an item being out of stock
 def out_of_stock_alert(item):
-    out_of_stock = Toplevel()   # Trialing Reference: 3 - Out of Stock Popup
+    out_of_stock = Toplevel()
     out_of_stock.geometry("1000x50")
     out_of_stock.title("out of stock item")
     Label(out_of_stock, text=item + " is out of stock", font=("Times New Roman", 20, "bold")).pack()
@@ -19,10 +19,12 @@ def check_item_spelling(items_in_order, items_to_add_to_order, checkout_button, 
 
 # Alerts the user of an item being incorrectly spelt
 def incorrectly_spelt():
-    incorrectly_spelt = Toplevel()  # Trialling Reference: 4 - Incorrectly Spelt Item Popup
+    un_subtract_item()
+    incorrectly_spelt = Toplevel()
     incorrectly_spelt.geometry("1000x50")
     incorrectly_spelt.title("item is incorrectly spelt")
     Label(incorrectly_spelt, text="this item is not spelt correctly, Please try again", font=("Times New Roman", 20, "bold")).pack()
+
 
 
 # Makes page to add items to the order
@@ -121,7 +123,7 @@ def load_new_order_page():
     customer_name = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
     items_in_order = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
     add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button, back_button), font=("Times New Roman", 15, 'bold'), bg="#b3b3b3")
-    checkout_button = Button(root, text="Checkout", command=lambda: checkout(items_in_order, customer_name),
+    checkout_button = Button(root, text="Checkout", command=lambda: checkout(items_in_order, customer_name, root),
                              font=("Times New Roman", 15, 'bold'), bg="#40bd40")
     order_price = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
 
@@ -133,7 +135,7 @@ def load_new_order_page():
 
 
 # Saves the contents of the order to a file and runs code to remove the amount of items from the menu
-def checkout(items_in_order, customer_name):
+def checkout(items_in_order, customer_name, root):
     time_of_order = datetime.now()
     with open("purchases.txt", "a") as purchases_file:
         purchases_file.write("\n")
@@ -149,7 +151,7 @@ def checkout(items_in_order, customer_name):
         purchases_file.write("$" + str(item_price()) + "\n")
         purchases_file.write("Order's GST: ")
         purchases_file.write("$" + str(get_gst()))
-        quit()
+        root.destroy()
 
 
 # Calculates the total price of the order
@@ -204,3 +206,26 @@ def subtract_item():
                                 json_file_write.write(json.dumps(json_file_thing, indent=4))
                                 json_file_write.close()
                                 return False
+
+
+def un_subtract_item():
+    # Opens Json file in read mode to get value of the quantity
+    all_items = "".join(items_to_be_added_to_the_order).strip(",")
+    all_items = all_items.split(", ")
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        for item in all_items:
+            for i in json_file_thing:
+                for j in json_file_thing[i]:
+                    if j["item name"] == item:
+                        new_quantity = int(j["item quantity"])+1
+                        json_file.close()
+                        # Re-opens the file and overwrites the original quantity
+                        with open("items.json", "w") as json_file_write:
+                            for item in all_items:
+                                for k in json_file_thing:
+                                    for l in json_file_thing[k]:
+                                        if l["item name"] == item:
+                                            l["item quantity"] = str(new_quantity)
+                            json_file_write.write(json.dumps(json_file_thing, indent=4))
+                            json_file_write.close()
