@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="added caupo.sh file">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="fixed">
+      <change beforePath="$PROJECT_DIR$/discounts_applied.json" beforeDir="false" afterPath="$PROJECT_DIR$/discounts_applied.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669435148041</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fixed">
+      <created>1669440116962</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669440116962</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,6 +179,7 @@
     <MESSAGE value="Bug fixes, update to &quot;add item page&quot; ui design, update to Readme.md file" />
     <MESSAGE value="Bug fixes, added functionality of managing discounts on items (located under the &quot;manage discounts&quot; button and code), additions also made to Readme file" />
     <MESSAGE value="added caupo.sh file" />
-    <option name="LAST_COMMIT_MESSAGE" value="added caupo.sh file" />
+    <MESSAGE value="fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed" />
   </component>
 </project>
