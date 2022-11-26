@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="Bug fixes, update to &quot;add item page&quot; ui design, update to Readme.md file">
-      <change afterPath="$PROJECT_DIR$/discounts_applied.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage_discounts_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_item_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/new_order_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_order_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove_item_page.py" afterDir="false" />
+    <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="Bug fixes, added functionality of managing discounts on items (located under the &quot;manage discounts&quot; button and code), additions also made to Readme file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +40,7 @@
     "last_opened_file_path": "/home/mcleodz/Digital-Science-Code"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Shell Script.caupo.sh">
     <configuration name="add_item_page" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -110,10 +104,26 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="caupo.sh" type="ShConfigurationType">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/Caupo.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.add_item_page" />
       <item itemvalue="Python.new_order_page" />
+      <item itemvalue="Shell Script.caupo.sh" />
     </list>
     <recent_temporary>
       <list>
@@ -188,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666083035173</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Bug fixes, added functionality of managing discounts on items (located under the &quot;manage discounts&quot; button and code), additions also made to Readme file">
+      <created>1669433598338</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669433598338</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +226,7 @@
     <MESSAGE value="all works" />
     <MESSAGE value="improved ui design and added back button to all pages" />
     <MESSAGE value="Bug fixes, update to &quot;add item page&quot; ui design, update to Readme.md file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes, update to &quot;add item page&quot; ui design, update to Readme.md file" />
+    <MESSAGE value="Bug fixes, added functionality of managing discounts on items (located under the &quot;manage discounts&quot; button and code), additions also made to Readme file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fixes, added functionality of managing discounts on items (located under the &quot;manage discounts&quot; button and code), additions also made to Readme file" />
   </component>
 </project>
