@@ -1,7 +1,6 @@
 import json
 from tkinter import *
 
-
 # Updates the text box displaying th Menu
 def update_label():
     menu = []
@@ -50,16 +49,16 @@ def load_remove_item_page():
 
 # Removes the requested item from the menu
 def remove_item(item_to_remove, list_of_items_label):
+    not_an_item = True
     item_being_removed = item_to_remove.get().lower()
     with open("items.json", "r") as json_file:
         json_file_thing = json.load(json_file)
         for i in json_file_thing:
-            for j in range(len(json_file_thing[i])):
+            for j in json_file_thing[i]:
                 if item_being_removed == j["item name"]:
-                    json_file_thing[i].remove(json_file_thing[i][j])
+                    json_file_thing[i].remove(j)
                     not_an_item = False
-                else:
-                    not_an_item = True
+
     with open("items.json", "w") as json_file:
         to_write = json.dumps(json_file_thing, indent=4)
         json_file.write(to_write)
@@ -73,5 +72,5 @@ def remove_item(item_to_remove, list_of_items_label):
 
 
 def check_item_spelling(item_to_remove, list_of_items_label):
-    if remove_item(item_to_remove, list_of_items_label):
+    if remove_item(item_to_remove, list_of_items_label) == True:
         incorrectly_spelt()

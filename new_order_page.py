@@ -71,7 +71,7 @@ def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price
         if not subtract_item():
             for i in json_file_thing:
                 for j in range(len(json_file_thing[i])):
-                    if items_to_be_added_to_the_order == json_file_thing[i][j]["item name"]:
+                    if items_to_be_added_to_the_order.strip("") == json_file_thing[i][j]["item name"]:
                         # Adds the requested item to the order along with the price
                         items_in_order.pack(fill='both')
                         add_item_to_order_button.pack_forget()
