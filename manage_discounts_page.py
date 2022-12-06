@@ -307,7 +307,7 @@ def apply_discounts():
         for k in json_file_thing:
             for l in json_file_thing[k]:
                 if l["item name"] == discount_names:
-                    l["item price"] = str(int(discounted_price))
+                    l["item price"] = str(float(discounted_price))
                     json_file_write.write(json.dumps(json_file_thing, indent=4))
 
 
