@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/Digital Science Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Digital Science Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discounts_applied.json" beforeDir="false" afterPath="$PROJECT_DIR$/discounts_applied.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_item_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage_discounts_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage_discounts_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove_item_page.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mcleodz/Digital-Science-Code&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/mcleodz/AS91883-Digital-Science-2022&quot;
   }
 }</component>
   <component name="Push.Settings">
@@ -177,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669440693360</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fixed">
+      <created>1670319907577</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1670319907578</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

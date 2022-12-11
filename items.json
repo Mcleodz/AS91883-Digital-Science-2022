@@ -1,3 +1,28 @@
 {
-
+    "coffee pod": [
+        {
+            "item name": "tokyo",
+            "item quantity": "8",
+            "item description": "10",
+            "item price": "10"
+        },
+        {
+            "item name": "christmas",
+            "item quantity": "9",
+            "item description": "10",
+            "item price": "10"
+        },
+        {
+            "item name": "firenze",
+            "item quantity": "9",
+            "item description": "10",
+            "item price": "10"
+        },
+        {
+            "item name": "roma",
+            "item quantity": "9",
+            "item description": "10",
+            "item price": "10"
+        }
+    ]
 }

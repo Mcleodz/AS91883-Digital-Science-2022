@@ -28,7 +28,7 @@ def load_add_item_page():
     # Creates Labels to describe what the text entry boxes DO!
     item_name_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Name")
     item_quantity_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Quantity (Must be a Whole Number")
-    item_category_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Category")
+    item_category_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Category (Categories cannot be deleted once added)")
     item_description_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Description")
     item_price_box_label = Label(root, width=60, bg='#c3c3c3', text="Item Price (Must be a Number")
 
