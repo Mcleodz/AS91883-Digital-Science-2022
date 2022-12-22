@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/Digital Science Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Digital Science Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="improved ui design of add_item_page.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/add_item_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove_item_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove_item_page.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +41,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mcleodz/AS91883-Digital-Science-2022&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/mcleodz/Python Challenges&quot;
   }
 }</component>
   <component name="Push.Settings">
@@ -186,7 +182,21 @@
       <option name="project" value="LOCAL" />
       <updated>1670319907578</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="improved ui design of add_item_page.py">
+      <created>1670722568194</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1670722568194</updated>
+    </task>
+    <task id="LOCAL-00016" summary="improved ui design of add_item_page.py">
+      <created>1670722617675</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1670722617675</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +220,7 @@
     <MESSAGE value="Bug fixes, added functionality of managing discounts on items (located under the &quot;manage discounts&quot; button and code), additions also made to Readme file" />
     <MESSAGE value="added caupo.sh file" />
     <MESSAGE value="fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed" />
+    <MESSAGE value="improved ui design of add_item_page.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved ui design of add_item_page.py" />
   </component>
 </project>
