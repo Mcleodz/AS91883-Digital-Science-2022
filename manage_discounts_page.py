@@ -1,6 +1,5 @@
 from tkinter import *
 import json
-from new_order_page import get_menu, checkout
 
 
 # Load "Manage Discount Page"
@@ -335,3 +334,13 @@ def remove_discount_from_price(discount_being_removed):
                                         json_file_write_thing = json.dumps(json_file_read_thing, indent=4)
                                         json_file_write.write(json_file_write_thing)
                                         json_file_write.close()
+
+# Gets all items on the menu
+def get_menu():
+    menu = []
+    with open("items.json", "r") as json_file:
+        json_file_thing = json.load(json_file)
+        for i in json_file_thing:
+            for j in json_file_thing[i]:
+                menu.append(j["item name"])
+    return ", ".join(menu)
