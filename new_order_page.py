@@ -1,163 +1,114 @@
-from tkinter import *
 import json
+from tkinter import *
+from functools import partial
 from datetime import datetime
 
+global order
+order = []
 
-# Alerts the user of an item being out of stock
-def out_of_stock_alert(item):
-    out_of_stock = Toplevel()
-    out_of_stock.geometry("1000x50")
-    out_of_stock.title("out of stock item")
-    Label(out_of_stock, text=item + " is out of stock", font=("Times New Roman", 20, "bold")).pack()
+################################################ Loading New Order Page ################################################
 
 
-# Checks if the item to add to the users order is on the menu, if not the incorrectly spelt item popup will trigger
-def check_item_spelling(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, back_button, root2):
-    if add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, back_button, root2):
-        incorrectly_spelt()
-
-
-# Alerts the user of an item being incorrectly spelt
-def incorrectly_spelt():
-    un_subtract_item()
-    incorrectly_spelt = Toplevel()
-    incorrectly_spelt.geometry("1000x50")
-    incorrectly_spelt.title("item is incorrectly spelt")
-    Label(incorrectly_spelt, text="this item is not spelt correctly, Please try again", font=("Times New Roman", 20, "bold")).pack()
-
-
-
-# Makes page to add items to the order
-def items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button, back_button):
-    root2 = Tk()
-    root2.title("Add an item to the menu")
-    root2.geometry("1920x1080")
-
-    menu = Entry(root2, width=50, bg="#a3a3a3", font=("Times New Roman", 15, 'bold'))
-    items_to_add_to_order = Entry(root2, width=50, bg="#a3a3a3", font=("Times New Roman", 15, 'bold'))
-    add_item_button = Button(root2, text="Add the item", command=lambda: check_item_spelling(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, back_button, root2), font=("Times New Roman", 15, 'bold'), bg="#40bd40")
-    back_button2 = Button(root2, text="Back", command=lambda: root2.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
-
-    menu.pack(fill="both", expand=True)
-
-    items_to_add_to_order.pack(fill="both", expand=True)
-    add_item_button.pack(fill="both", expand=True)
-    back_button2.pack(fill='both', expand=True)
-
-    menu.insert(0, get_menu())
-    items_to_add_to_order.insert(0, "(Type items to add here)")
-
-    menu.config(state='readonly')
-
-
-# Gets all items on the menu
-def get_menu():
-    menu = []
-    with open("items.json", "r") as json_file:
-        json_file_thing = json.load(json_file)
-        for i in json_file_thing:
-            for j in json_file_thing[i]:
-                menu.append(j["item name"])
-    return ", ".join(menu)
-
-
-def add_item(items_in_order, items_to_add_to_order, checkout_button, order_price, add_item_to_order_button, back_button, root2):
-    not_an_item = True
-    global items_to_be_added_to_the_order, all_items_in_the_order
-    all_items_in_the_order = []
-    items_to_be_added_to_the_order = items_to_add_to_order.get().lower()
-    # Finds the requested item on the menu
-    with open("items.json", "r") as json_file:
-        json_file_thing = json.load(json_file)
-        # Checks if the requested item is in stock and if the requested item is out of stock the user is alerted and item not added
-        if not subtract_item():
-            for i in json_file_thing:
-                for j in range(len(json_file_thing[i])):
-                    if items_to_be_added_to_the_order.strip("") == json_file_thing[i][j]["item name"]:
-                        # Adds the requested item to the order along with the price
-                        items_in_order.pack(fill='both')
-                        add_item_to_order_button.pack_forget()
-                        back_button.pack_forget()
-
-                        items_in_order.config(state='normal')
-                        items_in_order.insert(END, json_file_thing[i][j]["item name"] + ", ")
-                        items_in_order.config(state='readonly', bg="#a3a3a3")
-                        all_items_in_the_order.append(items_in_order.get())
-
-                        add_item_to_order_button.config(text="Add another item to order")
-
-                        order_price.pack(fill='both', expand=True)
-                        add_item_to_order_button.pack(fill='both', expand=True)
-                        checkout_button.pack(fill='both', expand=True)
-                        back_button.pack(fill='both', expand=True)
-
-                        root2.destroy()
-
-                        order_price.config(state='normal')
-                        order_price.delete(0, END)
-                        order_price.insert(0, "Order Price: $" + str(item_price()))
-                        order_price.config(state='readonly', bg="#a3a3a3")
-                        # Does not tell the "check_item_spelling" function to trigger the "incorrectly spelt" popup
-                        return False
-                        break
-                    # If current item is not the selected item then it will log that in the "not_an_item" variable
-                    else:
-                        not_an_item = True
-                # Checks if the requested item is on the menu
-                if not_an_item:
-                    # Tells the "check_item_spelling" function to trigger the "incorrectly spelt" popup
-                    return True
-                else:
-                    # Does not tell the "check_item_spelling" function to trigger the "incorrectly spelt" popup
-                    return False
-
-
-# Loads the "New Order Page" and destroys old root
 def load_new_order_page():
     root = Tk()
     root.title("New Order")
     root.geometry("1920x1080")
 
-    back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold')
-                         , bg="#c21313")
-    customer_name = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
-    items_in_order = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
-    add_item_to_order_button = Button(root, text="Add an item to order", command=lambda: items_to_add(items_in_order, checkout_button, order_price, add_item_to_order_button, back_button), font=("Times New Roman", 15, 'bold'), bg="#b3b3b3")
-    checkout_button = Button(root, text="Checkout", command=lambda: checkout(items_in_order, customer_name, root),
-                             font=("Times New Roman", 15, 'bold'), bg="#40bd40")
-    order_price = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    customer_name_entry = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    customer_name_entry.pack(fill="both", expand=True)
+    customer_name_entry.insert(0, "(customer name / table number)")
+    customer_name = customer_name_entry.get()
 
-    customer_name.pack(fill="both", expand=True)
-    add_item_to_order_button.pack(fill="both", expand=True)
+    order_displayed = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    order_displayed.pack(fill="both", expand=True)
+    order_displayed.insert(0, "")
+    order_displayed.insert(0, ", ".join(order))
+    order_displayed.config(state="readonly")
+
+    order_price_displayed = Entry(root, width=50, bg='#a3a3a3', font=("Times New Roman", 15, 'bold'))
+    order_price_displayed.pack(fill="both", expand=True)
+    order_price_displayed.insert(0, "$" + str(item_price()))
+    order_price_displayed.config(state="readonly")
+
+    add_items_button = Button(root, text="Add an item to the order", command=lambda: add_items(root), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
+    add_items_button.pack(fill="both", expand=True)
+
+    remove_an_item_button = Button(root, text="Remove an item from the order", command=lambda:remove_items(root), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
+    remove_an_item_button.pack(fill="both", expand=True)
+
+    purchase_button = Button(root, text="Checkout", command=lambda: checkout(customer_name, root), font=("Times New Roman", 15, 'bold'), bg="#40bd40")
+    purchase_button.pack(fill="both", expand=True)
+
+    back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#c21313")
     back_button.pack(fill="both", expand=True)
 
-    customer_name.insert(0, 'Customer name / Table Number')
+############################################## Adding items to users order #############################################
 
 
-# Saves the contents of the order to a file and runs code to remove the amount of items from the menu
-def checkout(items_in_order, customer_name, root):
+def add_items(root):
+    root2 = Toplevel()
+    root2.title("add item to order")
+    root2.geometry("1920x1080")
+
+    root.destroy()
+
+    button_identities = []
+    button_count = 0
+
+    with open("items.json", "r") as json_file:
+        json_object = json.load(json_file)
+        for i in json_object:
+            new_label = Label(root2, text=i, font=("Times New Roman", 15, "bold"), bg="#a2a2a2")
+            new_label.pack(fill="both", expand=True)
+            for j in json_object[i]:
+                new_button = Button(root2, text=(j["item name"]), font=("Times New Roman", 15, "bold"), command=partial(add_to_order, button_count, button_identities), bg="#40bd40")
+                new_button.pack(fill="both", expand=True)
+                button_identities.append(new_button)
+                button_count += 1
+
+    submit_button = Button(root2, text="Submit", command=lambda: int_func(root2), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
+    submit_button.pack(fill="both", expand=True)
+
+
+def add_to_order(button_count, button_identities):
+    button_name = (button_identities[button_count])
+    with open("items.json", "r") as json_file_read:
+        json_object = json.load(json_file_read)
+        for i in json_object:
+            for j in json_object[i]:
+                if button_name["text"] == j["item name"]:
+                    order.append(j["item name"])
+                    new_item_count = int(j["item quantity"]) - 1
+
+    with open("items.json", "w") as json_file_write:
+        for k in json_object:
+            for l in json_object[k]:
+                if l["item name"] == button_name["text"]:
+                    l["item quantity"] = str(new_item_count)
+        json_file_write.write(json.dumps(json_object, indent=4))
+        json_file_write.close()
+
+################################################### Saving Order Info ##################################################
+
+def checkout(customer_name, root):
     time_of_order = datetime.now()
-    with open("purchases.txt", "a") as purchases_file:
-        purchases_file.write("\n")
-        purchases_file.write("\n")
-        purchases_file.write("Time: " + time_of_order.strftime("%d/%m/%Y %H:%M:%S") + "\n")
-        purchases_file.write("Customer Name/ Table Number: ")
-        purchases_file.write(customer_name.get() + "\n")
-        purchases_file.write("Contents: ")
-        for i in items_in_order.get():
-            purchases_file.write(i)
-        purchases_file.write("\n")
-        purchases_file.write("Price: ")
-        purchases_file.write("$" + str(item_price()) + "\n")
-        purchases_file.write("Order's GST: ")
-        purchases_file.write("$" + str(get_gst()))
-        root.destroy()
+    root.destroy()
+    with open("purchases.txt", "a") as purchases:
+        purchases.write("\n")
+        purchases.write("\n")
+        purchases.write("Time: " + time_of_order.strftime("%d/%m/%Y %H:%M:%S") + "\n")
+        purchases.write("Customer/Table Number: " + customer_name)
+        purchases.write("\n")
+        purchases.write("Order: " + ", ".join(order))
+        purchases.write("\n")
+        purchases.write("Order Price: " + str(item_price()))
+        purchases.write("\n")
+        purchases.write("Order GST: " + str(get_gst()))
 
 
 # Calculates the total price of the order
 def item_price():
-    all_items = "".join(all_items_in_the_order)
-    all_items = all_items.split(", ")
+    all_items = order
     price = 0
     with open("items.json", "r") as json_file:
         json_file_thing = json.load(json_file)
@@ -178,54 +129,52 @@ def get_gst():
     return rounded_total_gst
 
 
-# Removes one from the quantity of every item in the order
-def subtract_item():
-    # Opens Json file in read mode to get value of the quantity
-    all_items = "".join(items_to_be_added_to_the_order).strip(",")
-    all_items = all_items.split(", ")
-    with open("items.json", "r") as json_file:
-        json_file_thing = json.load(json_file)
-        for item in all_items:
-            for i in json_file_thing:
-                for j in json_file_thing[i]:
-                    if j["item name"] == item:
-                        # Checks if the new quantity is a valid quantity
-                        if int(j["item quantity"])-1 < 0:
-                            out_of_stock_alert(item)
-                            return True
-                        else:
-                            new_quantity = int(j["item quantity"])-1
-                            json_file.close()
-                            # Re-opens the file and overwrites the original quantity
-                            with open("items.json", "w") as json_file_write:
-                                for item in all_items:
-                                    for k in json_file_thing:
-                                        for l in json_file_thing[k]:
-                                            if l["item name"] == item:
-                                                l["item quantity"] = str(new_quantity)
-                                json_file_write.write(json.dumps(json_file_thing, indent=4))
-                                json_file_write.close()
-                                return False
+def int_func(root2):
+    root2.destroy()
+    load_new_order_page()
 
 
-def un_subtract_item():
-    # Opens Json file in read mode to get value of the quantity
-    all_items = "".join(items_to_be_added_to_the_order).strip(",")
-    all_items = all_items.split(", ")
-    with open("items.json", "r") as json_file:
-        json_file_thing = json.load(json_file)
-        for item in all_items:
-            for i in json_file_thing:
-                for j in json_file_thing[i]:
-                    if j["item name"] == item:
-                        new_quantity = int(j["item quantity"])+1
-                        json_file.close()
-                        # Re-opens the file and overwrites the original quantity
-                        with open("items.json", "w") as json_file_write:
-                            for item in all_items:
-                                for k in json_file_thing:
-                                    for l in json_file_thing[k]:
-                                        if l["item name"] == item:
-                                            l["item quantity"] = str(new_quantity)
-                            json_file_write.write(json.dumps(json_file_thing, indent=4))
-                            json_file_write.close()
+############################################## Removing Items from order ##############################################
+
+def remove_items(root2):
+    root = Tk()
+    root.geometry("1920x1080")
+    root.title("Remove items from order")
+
+    button_identities = []
+    button_count = 0
+
+    for i in order:
+        new_button = Button(root, text=i, font=("Times New Roman", 15, "bold"), command=partial(remove_from_order, button_identities, button_count, root2, root), bg="#40bd40")
+        new_button.pack(fill="both", expand=True)
+        button_identities.append(new_button)
+        button_count += 1
+
+    back_button = Button(root, text="Back", command=lambda: root.destroy(), font=("Times New Roman", 15, 'bold'), bg="#a3a3a3")
+    back_button.pack(fill="both", expand=True)
+
+
+def remove_from_order(button_identities, button_count, root3, root):
+    button_name = (button_identities[button_count])
+    for i in order:
+        if button_name["text"] == i:
+            order.remove(i)
+            button_name.pack_forget()
+            int_func(root3)
+            root.destroy()
+
+    with open("items.json", "r") as json_file_read:
+        json_object = json.load(json_file_read)
+        for j in json_object:
+            for k in json_object[j]:
+                if button_name["text"] == k["item name"]:
+                    order.append(k["item name"])
+                    new_item_count = int(k["item quantity"]) + 1
+
+    with open("items.json", "w") as json_file_write:
+        for l in json_object:
+            for m in json_object[l]:
+                if m["item name"] == button_name["text"]:
+                    m["item quantity"] = str(new_item_count)
+        json_file_write.write(json.dumps(json_object, indent=4))
+        json_file_write.close()

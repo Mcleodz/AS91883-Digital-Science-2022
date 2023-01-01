@@ -4,6 +4,8 @@
     <list default="true" id="008db565-875a-4974-b4db-a92461437847" name="Changes" comment="improved ui design of add_item_page.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/items.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage_discounts_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage_discounts_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/new_order_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/new_order_page.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +20,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -41,7 +48,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mcleodz/Python Challenges&quot;
+    &quot;last_opened_file_path&quot;: &quot;/home/mcleodz/AS91883-Digital-Science-2022&quot;
   }
 }</component>
   <component name="Push.Settings">
